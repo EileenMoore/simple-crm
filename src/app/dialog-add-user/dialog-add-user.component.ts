@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import { User } from '../user/user.class';
+import { User } from '../../models/user.class';
 
 @Component({
   selector: 'app-dialog-add-user',
