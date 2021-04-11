@@ -24,6 +24,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     AngularFirestoreModule,
     MatProgressBarModule,
     MatCardModule,
+    MatMenuModule,
     FormsModule
   ],
   providers: [],

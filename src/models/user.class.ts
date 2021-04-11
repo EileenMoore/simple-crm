@@ -23,6 +23,7 @@ export class User {
         return {
             firstName: this.firstName,
             lastName: this.lastName,
+            email: this.email,
             birthDate: this.birthDate,
             address: this.address,
             postalCode: this.postalCode,
