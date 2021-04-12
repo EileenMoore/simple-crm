@@ -3,6 +3,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { getMatInputUnsupportedTypeError } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditHeaderComponent } from '../dialog-edit-header/dialog-edit-header.component';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,7 +14,7 @@ import { User } from 'src/models/user.class';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) { }
 
   userId = '';
   user: User = new User();
@@ -32,10 +35,12 @@ export class UserDetailComponent implements OnInit {
   }
 
   editHeader() {
-
+    const dialog = this.dialog.open(DialogEditHeaderComponent);
+    dialog.componentInstance.user = this.user;
   }
 
   editUser() {
-
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = this.user;
   }
 }
