@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { getMatInputUnsupportedTypeError } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,6 +17,7 @@ export class UserDetailComponent implements OnInit {
 
   userId = '';
   user: User = new User();
+  birthDate;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -30,17 +30,30 @@ export class UserDetailComponent implements OnInit {
   getUser() {
     this.firestore.collection('users').doc(this.userId).valueChanges().subscribe((user: any) => {
       this.user = new User(user);
+      this.birthDate = new Date(user.birthDate);
+      this.convertDate(this.birthDate);
+      this.user.birthDate = this.birthDate;
       console.log('Retrieved user ', this.user);
     });
   }
 
+  convertDate(today) {
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0! 
+    var yyyy = today.getFullYear();
+    if (dd < 10) { dd = '0' + dd } if (mm < 10) { mm = '0' + mm }
+    this.birthDate = dd + '/' + mm + '/' + yyyy;
+  }
+
   editHeader() {
     const dialog = this.dialog.open(DialogEditHeaderComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
   }
 
   editUser() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
   }
 }

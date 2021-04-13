@@ -20,7 +20,9 @@ export class DialogAddUserComponent implements OnInit {
   }
 
   saveUser() {
-    this.user.birthDate = this.birthDate.getTime();
+    if (this.birthDate) {
+      this.user.birthDate = this.birthDate.getTime(); //aus Date Objekt einen Timestamp machen für JSON
+    };
     console.log('Current User is: ', this.user);
     this.loading = true;
     this.firestore.collection('users').add(this.user.toJSON()).then((result: any) => {
