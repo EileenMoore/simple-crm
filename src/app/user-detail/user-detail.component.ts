@@ -32,7 +32,6 @@ export class UserDetailComponent implements OnInit {
       this.user = new User(user);
       this.birthDate = new Date(user.birthDate);
       this.convertDate(this.birthDate);
-      this.user.birthDate = this.birthDate;
       console.log('Retrieved user ', this.user);
     });
   }
@@ -42,7 +41,7 @@ export class UserDetailComponent implements OnInit {
     var mm = today.getMonth() + 1; //January is 0! 
     var yyyy = today.getFullYear();
     if (dd < 10) { dd = '0' + dd } if (mm < 10) { mm = '0' + mm }
-    this.birthDate = dd + '/' + mm + '/' + yyyy;
+    this.birthDate = mm + '/' + dd + '/' + yyyy;
   }
 
   editHeader() {

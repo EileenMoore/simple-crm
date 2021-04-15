@@ -9,7 +9,6 @@ import { User } from '../../models/user.class';
   styleUrls: ['./dialog-add-user.component.scss']
 })
 export class DialogAddUserComponent implements OnInit {
-
   user: User = new User();
   birthDate: Date;
   loading = false;

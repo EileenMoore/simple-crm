@@ -20,6 +20,9 @@ export class DialogEditUserComponent implements OnInit {
   }
 
   saveUser() {
+    if (this.birthDate) {
+      this.user.birthDate = this.birthDate.getTime(); //aus Date Objekt einen Timestamp machen für JSON
+    };
     this.loading = true;
     this.firestore.collection('users').doc(this.userId)
       .update(this.user.toJSON())
