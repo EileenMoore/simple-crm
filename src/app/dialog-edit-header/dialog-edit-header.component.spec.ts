@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 import { DialogEditHeaderComponent } from './dialog-edit-header.component';
 
@@ -8,9 +12,14 @@ describe('DialogEditHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogEditHeaderComponent ]
+      imports: [MatDialogModule],
+      declarations: [DialogEditHeaderComponent, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule],
+      providers: [{
+        provide: MatDialogRef,
+        useValue: {}
+      }]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -9,7 +9,7 @@ import { User } from 'src/models/user.class';
   styleUrls: ['./dialog-edit-header.component.scss']
 })
 export class DialogEditHeaderComponent implements OnInit {
-  user: User;
+  user: User = new User();
   loading = false;
   userId: string;
 
@@ -20,12 +20,17 @@ export class DialogEditHeaderComponent implements OnInit {
 
   saveUser() {
     this.loading = true;
-    this.firestore.collection('users').doc(this.userId)
-      .update(this.user.toJSON())
-      .then(() => {
-        this.loading = false;
-        this.dialogRef.close();
-      });
+    if (this.userId) {
+      this.firestore.collection('users').doc(this.userId)
+        .update(this.user.toJSON())
+        .then(() => {
+          this.loading = false;
+          this.dialogRef.close();
+        });
+    } else {
+      //Throw Error
+    }
+
   }
 
 }
