@@ -12,8 +12,8 @@ describe('DialogEditHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatDialogModule],
-      declarations: [DialogEditHeaderComponent, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule],
+      imports: [MatDialogModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule],
+      declarations: [DialogEditHeaderComponent],
       providers: [{
         provide: MatDialogRef,
         useValue: {}
